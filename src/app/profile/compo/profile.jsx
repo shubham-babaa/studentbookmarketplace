@@ -8,13 +8,22 @@ const Profile = ({studentId }) => {
   const [newUsername, setNewUsername] = useState('');
   const { contextData, updateContextVariable } = useContext(MyContext);
   const [newProfilePhoto, setNewProfilePhoto] = useState('');
-    
-
+    const [reload,setReload]=useState(true)
 
   useEffect(() => {
-    fetchProductsAndUpdateContext(studentId!=null?studentId:contextData.studentId, updateContextVariable);
-    fetchProductsAndUpdateContext2(studentId, updateContextVariable);
-  }, [studentId, contextData.studentId, fetchProductsAndUpdateContext, fetchProductsAndUpdateContext2]);
+  
+console.log(studentId)
+    const fetchDataAndUpdateContext = async () => {
+      await fetchProductsAndUpdateContext((studentId !== undefined) ? studentId : contextData.studentId, updateContextVariable);
+      await fetchProductsAndUpdateContext2(studentId, updateContextVariable);
+    setReload(true)
+    };
+   
+    fetchDataAndUpdateContext();
+  }, [studentId,contextData.studentId,reload]);
+
+ 
+
 
   const handleUsernameChange = (event) => {
     setNewUsername(event.target.value);
@@ -161,10 +170,12 @@ async function fetchProductsAndUpdateContext2(studentId, updateContextVariable) 
   try {
     const response = await fetch(`/api/profile?studentId=${studentId}`, {
       method: 'GET',
+       next: { revalidate: 0 } ,
     });
 
     if (response.ok) {
       const products = await response.json();
+     
       updateContextVariable('profileXUserIdentitydata', products);
     } else {
       console.error('Failed to retrieve products');
