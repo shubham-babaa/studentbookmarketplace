@@ -114,7 +114,7 @@ const Profile = ({ studentId }) => {
   return (
     <div className="  mx-auto flex md:mt-10 w-full  ">
       <div className="mb-4 w-full "> 
-        <div className="text-center flex-grow-3 p-4  bg-white border-gray-300 rounded-md shadow-md h-auto  xl:w-[100%] mb-16  md:mx-auto">
+        <div className="text-center  md:p-4  bg-white border-gray-300 rounded-md shadow-md h-auto  xl:w-[100%] mb-16  md:mx-auto md:w-full w-[400px]">
 
           <div className="text-black    text-xl px-4 items-center md:flex w-full">
             <Image

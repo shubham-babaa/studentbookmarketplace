@@ -1,11 +1,16 @@
 'use client'
-import { useState,useContext} from 'react';
+import { useState,useContext,useEffect} from 'react';
 import{MyContext} from "../components/mycontext"
 const page = () => {
   const{ contextData,updateContextVariable}=useContext(MyContext)
   const[post,setPost]=useState('');
   const[img,setImg]=useState('');
-  const storedToken = localStorage.getItem('token');
+ const[storedToken,setStoredToken]=useState('')
+
+  useEffect(()=>{
+    const token = localStorage.getItem('token');
+ setStoredToken(token);
+  },[storedToken])
   const [formData, setFormData] = useState({
    
     title: '',
