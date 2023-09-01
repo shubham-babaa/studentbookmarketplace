@@ -20,9 +20,12 @@ export default function RootLayout({
       
       <body className={inter.className}>
       <MyContextProvider>
-        <div className='flex justify-start   '>
-      <Navbar />
-      {children}
+        <div className='flex justify-start bg-slate-900  '>
+         
+        <Navbar />
+     
+         {children}
+    
       </div>
       </MyContextProvider></body>
     </html>

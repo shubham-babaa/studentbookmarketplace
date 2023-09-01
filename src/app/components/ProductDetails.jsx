@@ -8,7 +8,7 @@ const ProductDetail = ({product}) => {
   const { contextData, updateContextVariable } = useContext(MyContext);
  
 return (
-    <div className="container mx-auto py-8   mt-10 rounded-md w-[30vw] ">
+    <div className=" mx-auto py-8  mb-5 mt-10 rounded-md xl:w-[500px] w-auto h-[600px]">
       <div className="">
      
           <div className='justify-center flex border-2 border-gray-600 w-auto rounded-xl'>
@@ -18,7 +18,7 @@ return (
       alt="Placeholder Image"
       width={300}
       height={600}
-      className="h-[50%] w-[60%] shadow-gray-200 mx-auto my-5 rounded-md shadow-md"
+      className="h-[300px] w-[300px] shadow-gray-200 mx-auto my-5 rounded-md shadow-md"
     />
     <h1 className="text-2xl font-semibold text-sky-600 mb-4">{product.title}</h1>
     <p className="text-cyan-700 mb-2">{product.description}</p>

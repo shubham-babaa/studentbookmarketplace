@@ -2,8 +2,9 @@
 import React from 'react';
 import Image from 'next/image';
 const Post = ({ post }) => {
+  console.log(post)
   return (
-    <div className="relative">
+    <div className="relative ">
     
       
               <Image
@@ -11,7 +12,7 @@ const Post = ({ post }) => {
         alt="Placeholder Image"
         width={300}
         height={200}
-        className="h-[300px] w-[400px] rounded-md shadow-gray-500 shadow-md"
+        className="md:h-[300px] md:w-[400px] w-[200px] h-[200px] rounded-md shadow-gray-500 shadow-md"
       />
                
                

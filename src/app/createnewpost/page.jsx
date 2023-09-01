@@ -3,7 +3,9 @@ import { useState,useContext} from 'react';
 import{MyContext} from "../components/mycontext"
 const page = () => {
   const{ contextData,updateContextVariable}=useContext(MyContext)
-  const[post,setPost]=useState(null)
+  const[post,setPost]=useState('');
+  const[img,setImg]=useState('');
+  const storedToken = localStorage.getItem('token');
   const [formData, setFormData] = useState({
    
     title: '',
@@ -44,15 +46,17 @@ const page = () => {
       ...prevData,
       [name]: value,
     }));
+
   };
   const handlefile = async (e) => {
     try {
       const file = e.target.files[0];
+      
       if (file) {
         const base64 = await convert_to(file);
-        console.log(base64)
+   
         setPost(base64)
-       
+      
       }
     } catch (error) {
       console.error('Error handling file:', error);
@@ -61,12 +65,14 @@ const page = () => {
   
   const handleSubmit =async (e) => {
     e.preventDefault();
+  
+  
    const daa={title: formData.title,
    author: formData.author,
    subject: formData.subject,
    price: formData.price,
    condition: formData.condition,
-   sellerId:contextData.studentId,
+   sellerId:storedToken,
    image: post,
  
    classOfBook: formData.classOfBook,}
@@ -78,8 +84,8 @@ const page = () => {
         });
   
         if (response.ok) {
-          console.log('Product created successfully');
-          // You can perform any other actions after successful submission
+          alert('Product created successfully');
+          
         } else {
           console.error('Failed to create product');
         }
@@ -90,10 +96,19 @@ const page = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className=" mx-auto mt-8 p-4 border border-gray-300 rounded-md shadow-md h-auto " encType="multipart/form-data">
-        <div className='flex justify-center items-center gap-10'>
-        <div>
-      <label htmlFor="title" className="block font-semibold mb-2">Title:</label>
+    
+
+      
+  
+     
+    <form
+  onSubmit={handleSubmit}
+  className="text-center flex-grow-3 p-4  bg-white border-gray-300 rounded-md shadow-md h-auto  xl:w-[100%]  md:mx-auto"
+  encType="multipart/form-data"
+>
+  <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-6">
+    <div className="w-full md:w-[48%]">
+    <label htmlFor="title" className="block font-semibold mb-2">Title:</label>
       <input type="text" id="title" name="title" value={formData.title} onChange={handleChange} className="w-full px-3 py-2 border border-gray-300 rounded-md mb-4" />
 
       <label htmlFor="author" className="block font-semibold mb-2">Author:</label>
@@ -117,10 +132,10 @@ const page = () => {
       </option>
     ))}
   </select>
-      </div>
-      <div>
-     
-      <label htmlFor="price" className="block font-semibold mb-2">Price:</label>
+    </div>
+    <div className="w-full md:w-[48%]">
+
+    <label htmlFor="price" className="block font-semibold mb-2">Price:</label>
       <input type="number" id="price" name="price" value={formData.price} onChange={handleChange} className="w-full px-3 py-2 border border-gray-300 rounded-md mb-4" />
       <label htmlFor="condition" className="block font-semibold mb-2">Condition:</label>
 <select
@@ -140,17 +155,19 @@ const page = () => {
   id="image"
   name="image"
   accept="image/*"
-  value={formData.image} 
   onChange={(e)=>handlefile(e)}
   className="w-full border border-gray-300 rounded-md mb-4"
 />
-      </div>
+    </div>
+  </div>
+  <button
+    type="submit"
+    className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 mt-8 w-full"
+  >
+    Submit
+  </button>
+</form>
 
-      
-  
-      </div>
-      <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 mt-10 w-full">Submit</button>
-    </form>
   );
 };
 

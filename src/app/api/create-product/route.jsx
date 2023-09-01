@@ -8,10 +8,10 @@ export async function POST(request) {
   
   const creatorObjectId = new mongoose.Types.ObjectId();
   const { title, author, subject, price, condition, sellerId,image, classOfBook } = await request.json();
-
+console.log(title)
   try {
     await connectDB();
-    console.log('Image:', image); // Make sure image is defined
+     // Make sure image is defined
 
    
           const newBook = new Book({
@@ -26,12 +26,12 @@ export async function POST(request) {
             section: "infant",
             classOfBook
           });
-
+console.log(newBook)
           await newBook.save();
           console.log('Saved Book with image URL');
         
       
-    
+          return new Response('Failed to create a new book', { status: 200 });
 
     // ... your existing code ...
   } catch (error) {

@@ -38,7 +38,7 @@ export default  function Home() {
 
 
   return (
-    <main className='w-full flex justify-between gap-10' >
+    <main className='lg:flex justify-between  block  ' >
      
        <div className="bg-gray-100 min-h-screen   ">
       <header className="bg-blue-500 text-white text-center py-16">
@@ -50,12 +50,10 @@ export default  function Home() {
           <div className="md:w-1/2">
             <h2 className="text-2xl font-semibold mb-4">Find the Books You Need</h2>
             <p className="text-gray-700">Explore our listings to find the perfect books for your studies.</p>
-            <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">
-              Browse Listings
-            </button>
+           
           </div>
           <div className="md:w-1/2 text-center">
-            <img src="/i1.jpeg" alt="Books Illustration" className="max-w-full h-auto" />
+            <img src="/kl.jpg" alt="Books Illustration" className="max-w-full h-auto" />
           </div>
         </div>
         <div>
@@ -68,7 +66,7 @@ export default  function Home() {
       </div>
      
     </div>
-<div>
+<div className=''>
 <NewsItempage/>
 </div>
 

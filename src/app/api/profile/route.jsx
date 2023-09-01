@@ -8,7 +8,7 @@ export async function PUT(request) {
   
   const creatorObjectId = new mongoose.Types.ObjectId();
   const {newUsername,newProfilePhoto,studentId,name} = await request.json();
-
+console.log(studentId)
   try {
     await connectDB();
     console.log('Image:', newUsername,studentId,name); // Make sure image is defined

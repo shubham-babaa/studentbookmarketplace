@@ -9,11 +9,11 @@ const NewsItemPage = () => {
 //   const router = useRouter();
 //   const { id } = router.query;
 const{ contextData,updateContextVariable}=useContext(MyContext)
-  //
+const storedToken = localStorage.getItem('token');
+
   useEffect(() => {
-  
-    console.log(contextData.studentId)
-    fetchProductsAndUpdateContext2(contextData.studentId, updateContextVariable);
+    
+    fetchProductsAndUpdateContext2(storedToken, updateContextVariable);
     console.log(contextData.profileUserIdentitydata)
   }, []);
 
@@ -25,68 +25,46 @@ const{ contextData,updateContextVariable}=useContext(MyContext)
 
   return (
 
-      <div className="container mx-auto py-8 w-[30vw] fixed min-h-screen">
-          <div className="mb-1 bg-gray-100 w-auto h-auto py-10 ">
-          <Link href="/profile">
-            <div className="text-black relative flex justify-start items-center text-[20px]  gap-1 px-10 ">
-              <Image
-                 src={contextData.profileUserIdentitydata[0]?.image || ''}// Path to the image in the public folder
-                alt="Placeholder Image"
-                width={300}
-                height={200}
-                className="w-28 h-28 rounded-full shadow-gray-500 shadow-md"
-              />
-               <span className="ml-10 ">{contextData.profileUserIdentitydata[0]?.userName || ''}</span> <br />
-              <span className="ml-10 ">{contextData.userName}</span>
-            </div>
-          </Link>
-          <button></button>
-
+    <div className=" text-center xl:px-4  bg-white xl:py-8 sticky bottom-0 xl:sticky xl:top-0 xl:min-h-screen">
+    <div className="mb-1  w-full  h-auto py-10 ">
+      <Link href="/profile">
+        <div className="text-black relative flex flex-col sm:flex-row justify-start items-center text-xl sm:text-2xl gap-1 sm:px-10">
+          <Image
+            src={contextData.profileUserIdentitydata[0]?.image || ''}
+            alt="Placeholder Image"
+            width={300}
+            height={200}
+            className="xl:w-28 xl:h-28  h-16 w-16 rounded-full shadow-gray-500 shadow-md sm:mr-6"
+          />
+          <span className="mt-2 sm:mt-0 text-blue-700 ">{contextData.profileUserIdentitydata[0]?.userName || ''}</span>
+       
         </div>
-        <div >
-        <h1 className="text-2xl font-semibold mb-4">{newsItem.title}</h1>
-        <p>{newsItem.content}</p>
-        </div>
-
-
-        <footer className="bg-gray-200 py-4 mt-44">
-      <div className="container mx-auto flex items-center justify-center">
-        <ul className="flex space-x-6">
-          <li>
-            <a href="#">About</a>
-          </li>
-          <li>
-            <a href="#">Help</a>
-          </li>
-          <li>
-            <a href="#">Press</a>
-          </li>
-          <li>
-            <a href="#">API</a>
-          </li>
-          <li>
-            <a href="#">Jobs</a>
-          </li>
-          <li>
-            <a href="#">Privacy</a>
-          </li>
-          <li>
-            <a href="#">Terms</a>
-          </li>
-          <li>
-            <a href="#">Locations</a>
-          </li>
+      </Link>
+    </div>
+    <div className="my-4">
+      <h1 className="text-2xl font-semibold mb-4">{newsItem.title}</h1>
+      <p>{newsItem.content}</p>
+    </div>
+    <footer className="bg-gray-300 py-4 mt-8 w-full ">
+      <div className=" text-center">
+        <ul className="flex flex-wrap justify-center space-y-2 sm:space-y-0 sm:space-x-6">
+          <li><a href="#">About</a></li>
+   
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+       
         </ul>
-      </div>
-      <div className="container mx-auto text-center mt-4">
-        <span>Language:</span>
-        <select className="ml-2">
-          <option>English (UK)</option>
-        </select>
+        <div className="mt-4">
+          <span>Language:</span>
+          <select className="ml-2 px-2 py-1 rounded border">
+            <option>English (UK)</option>
+          </select>
+        </div>
       </div>
     </footer>
-
-      </div>
+  </div>
+  
   )
 };
 

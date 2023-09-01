@@ -5,9 +5,9 @@ import React, { useEffect, useState } from 'react'; // Import React, useEffect, 
 import Home from "./components/Home"
 
 export default function page() {
-  
+
   return (
-    <main className='relative'>
+    <main className='relative' >
 
       <Home/>
    

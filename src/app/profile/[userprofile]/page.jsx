@@ -15,7 +15,7 @@ useEffect(()=>{
 console.log(keyword)
 },[keyword])
   return (
-    <div>
+    <div className='w-full px-44'>
       <Profile studentId={keyword}/>
     </div>
   )
